@@ -1,6 +1,6 @@
 FROM --platform=$BUILDPLATFORM node:16.20-alpine AS frontend-deps
 
-ARG SKIP_FRONTEND_TEST
+ARG SKIP_FRONTEND_TEST=true
 ARG SKIP_FRONTEND_BUILD
 
 WORKDIR /srv/frontend/
@@ -22,7 +22,7 @@ RUN --mount=type=cache,id=pnpm,target=/root/.pnpm-store/v3 \
 
 FROM --platform=$BUILDPLATFORM frontend-deps AS build-frontend
 
-ARG SKIP_FRONTEND_TEST
+ARG SKIP_FRONTEND_TEST=true
 ARG SKIP_FRONTEND_BUILD
 ENV CI=true
 
@@ -51,7 +51,7 @@ ARG CI
 ARG GITHUB_REF
 ARG GITHUB_SHA
 ARG GIT_BRANCH
-ARG SKIP_BACKEND_TEST
+ARG SKIP_BACKEND_TEST=true
 ARG BACKEND_TEST_TIMEOUT
 
 # install gcc in order to be able to go test package with -race
