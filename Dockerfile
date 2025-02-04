@@ -8,7 +8,7 @@ WORKDIR /srv/frontend/
 COPY ./frontend/package.json ./frontend/pnpm-lock.yaml ./frontend/pnpm-workspace.yaml /srv/frontend/
 COPY ./frontend/apps/remark42/package.json /srv/frontend/apps/remark42/
 
-RUN mkdir -p /srv/var && chown -R app:app /srv/var
+RUN mkdir -p /srv/var
 VOLUME /srv/var
 
 RUN \
