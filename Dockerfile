@@ -8,9 +8,6 @@ WORKDIR /srv/frontend/
 COPY ./frontend/package.json ./frontend/pnpm-lock.yaml ./frontend/pnpm-workspace.yaml /srv/frontend/
 COPY ./frontend/apps/remark42/package.json /srv/frontend/apps/remark42/
 
-RUN mkdir -p /srv/var
-VOLUME /srv/var
-
 RUN \
   if [[ -z "$SKIP_FRONTEND_BUILD" || -z "$SKIP_FRONTEND_TEST" ]]; then \
     apk add --no-cache --update git && \
@@ -99,6 +96,7 @@ LABEL org.opencontainers.image.authors="Umputun <umputun@gmail.com>" \
 
 WORKDIR /srv
 
+COPY ./var/teste.txt /srv/var/
 COPY docker-init.sh /srv/init.sh
 ADD backend/scripts/backup.sh /usr/local/bin/backup
 ADD backend/scripts/restore.sh /usr/local/bin/restore
